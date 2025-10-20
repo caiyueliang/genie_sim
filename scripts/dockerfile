@@ -59,7 +59,10 @@ RUN pip3 install -r /tmp/requirements_infer.txt -i https://pypi.tuna.tsinghua.ed
 
 # pip install curobo [default to option1]
 # OPTION 1: install from source, which can be slow, please refer to https://curobo.org/get_started/1_install_instructions.html
-RUN git clone https://github.com/NVlabs/curobo.git --depth 1 /tmp/curobo
+# RUN git config --global http.version HTTP/1.1 && \
+#     git clone https://github.com/NVlabs/curobo.git --depth 1 /tmp/curobo
+COPY ./curobo /tmp/curobo
+
 RUN cd /tmp && wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
 RUN dpkg -i /tmp/cuda-keyring_1.0-1_all.deb
 RUN apt-get update
